@@ -1,4 +1,6 @@
 #!/bin/bash
+#Inspired by https://github.com/viccherubini/get-shit-done
+
 
 E_NO_PARAMS=1
 E_USER_NOT_ROOT=2
@@ -69,8 +71,8 @@ work()
 
     for site in "${site_list[@]}"
     do
-        echo -e "127.0.0.1\t$site" >> $file
-        echo -e "127.0.0.1\twww.$site" >> $file
+        printf  "127.0.0.1\t$site\n" >> $file
+        printf  "127.0.0.1\twww.$site\n" >> $file
     done
 
     echo $end_token >> $file
@@ -109,7 +111,7 @@ d
 
     file=$1
 
-    sed --in-place -e "$sed_script" $file
+    sed -i -e "$sed_script" $file
 
     $restart_network
 }
